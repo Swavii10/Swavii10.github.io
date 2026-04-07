@@ -1,4 +1,4 @@
-var map = L.map('map').setView([44.2, -114.5], 6);
+var map = L.map('map').setView([38, -95], 4);
 
 var basemapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
