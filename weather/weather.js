@@ -53,13 +53,31 @@ $.getJSON(weatherAlertsUrl, function(data) {
   }).addTo(map);
 
 });
-// Click on map → show coordinates
+// Click anywhere → show coordinates + state
 map.on('click', function(e) {
+
   var lat = e.latlng.lat.toFixed(4);
   var lon = e.latlng.lng.toFixed(4);
 
-  L.popup()
-    .setLatLng(e.latlng)
-    .setContent("Lat: " + lat + "<br>Lon: " + lon)
-    .openOn(map);
+  var message = "Lat: " + lat + "<br>Lon: " + lon;
+
+  $.getJSON('https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json', function(data) {
+
+    var stateName = "Unknown";
+
+    data.features.forEach(function(feature) {
+      if (turf.booleanPointInPolygon(
+        turf.point([lon, lat]),
+        feature
+      )) {
+        stateName = feature.properties.name;
+      }
+    });
+
+    L.popup()
+      .setLatLng(e.latlng)
+      .setContent(message + "<br>State: " + stateName)
+      .openOn(map);
+  });
+
 });
