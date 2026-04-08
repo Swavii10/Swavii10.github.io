@@ -1,7 +1,7 @@
 # Swavii10.github.io
 # Weather Map
 
-## Interactive Weather Map (Idaho)
+## Interactive Weather Map 
 
 This project shows a live weather map with radar and alerts using Leaflet.
 
