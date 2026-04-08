@@ -3,6 +3,18 @@ var map = L.map('map').setView([38, -95], 4);
 var basemapUrl = 'https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}';
 
 var basemap = L.tileLayer(basemapUrl).addTo(map);
+// State boundaries
+var statesUrl = 'https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json';
+
+$.getJSON(statesUrl, function(data) {
+  L.geoJSON(data, {
+    style: {
+      color: 'white',
+      weight: 2,
+      fill: false
+    }
+  }).addTo(map);
+});
 var radarUrl = 'https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi';
 var radarDisplayOptions = {
   layers: 'nexrad-n0r-900913',
@@ -40,4 +52,14 @@ $.getJSON(weatherAlertsUrl, function(data) {
 
   }).addTo(map);
 
+});
+// Click on map → show coordinates
+map.on('click', function(e) {
+  var lat = e.latlng.lat.toFixed(4);
+  var lon = e.latlng.lng.toFixed(4);
+
+  L.popup()
+    .setLatLng(e.latlng)
+    .setContent("Lat: " + lat + "<br>Lon: " + lon)
+    .openOn(map);
 });
