@@ -11,7 +11,6 @@
 <script>
 const R=["GIS & remote sensing","Environmental data analyst","Geological field technician"],e=document.getElementById("t");
 if(matchMedia("(prefers-reduced-motion:reduce)").matches){e.textContent=R[0]}else{let i=0,c=0,d=0;(function k(){const w=R[i];c+=d?-1:1;e.textContent=w.slice(0,c);let s=d?35:70;if(!d&&c==w.length){d=1;s=1600}else if(d&&c==0){d=0;i=(i+1)%R.length;s=350}setTimeout(k,s)})()}
-const o=new IntersectionObserver(a=>a.forEach(x=>{if(x.isIntersecting){x.target.classList.add("on");o.unobserve(x.target)}}),{threshold:.12});document.querySelectorAll(".rv").forEach(x=>o.observe(x));
 </script><script>
 (async()=>{const g=document.getElementById("c"),x=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 try{const r=await fetch("https://api.github.com/repos/Swavii10/swavii10.github.io/contents/Certificate");if(!r.ok)throw 0;
